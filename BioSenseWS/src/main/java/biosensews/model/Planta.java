@@ -26,6 +26,9 @@ public class Planta {
         this.DataPlantio = DataPlantio;
         this.Quantidade = Quantidade;
     }
+    
+    public Planta() {
+    }
 
     public int getId() {
         return Id;

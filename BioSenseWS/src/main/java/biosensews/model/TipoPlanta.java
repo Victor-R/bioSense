@@ -10,7 +10,7 @@ package biosensews.model;
  * @author Lucas Leandro
  */
 public class TipoPlanta {
-    
+
     private int Id;
     private String Nome;
     private int TempoColheita;
@@ -29,6 +29,10 @@ public class TipoPlanta {
         this.PhIdeal = PhIdeal;
         this.TemperaturaIdeal = TemperaturaIdeal;
         this.UmidadeIdeal = UmidadeIdeal;
+    }
+
+    public TipoPlanta() {
+
     }
 
     public int getId() {

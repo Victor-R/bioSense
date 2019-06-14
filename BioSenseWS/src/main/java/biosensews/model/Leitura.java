@@ -32,6 +32,9 @@ public class Leitura {
         this.Irrigacao = Irrigacao;
         this.Solo = Solo;
     }
+    
+    public Leitura() {
+    }
 
     public int getId() {
         return Id;

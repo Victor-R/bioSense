@@ -10,19 +10,26 @@ package biosensews.model;
  * @author Lucas Leandro
  */
 public class Usuario {
-    
+
     private int Id;
     private String Nome;
     private String Email;
     private String Celular;
     private String Telefone;
+    private String Login;
+    private String Senha;
 
-    public Usuario(int Id, String Nome, String Email, String Celular, String Telefone) {
+    public Usuario(int Id, String Nome, String Email, String Celular, String Telefone, String Login, String Senha) {
         this.Id = Id;
         this.Nome = Nome;
         this.Email = Email;
         this.Celular = Celular;
         this.Telefone = Telefone;
+        this.Login = Login;
+        this.Senha = Senha;
+    }
+
+    public Usuario() {
     }
 
     public int getId() {
@@ -64,4 +71,21 @@ public class Usuario {
     public void setTelefone(String Telefone) {
         this.Telefone = Telefone;
     }
+
+    public String getLogin() {
+        return Login;
+    }
+
+    public void setLogin(String Login) {
+        this.Login = Login;
+    }
+
+    public String getSenha() {
+        return Senha;
+    }
+
+    public void setSenha(String Senha) {
+        this.Senha = Senha;
+    }
+
 }
