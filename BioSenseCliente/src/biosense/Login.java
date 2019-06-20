@@ -30,14 +30,16 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         loginTxtField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        senhaTxtField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
+        senhaPassField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
+        setLocation(new java.awt.Point(500, 500));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(227, 240, 212));
         jPanel1.setForeground(new java.awt.Color(102, 255, 51));
@@ -51,12 +53,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setLabelFor(loginTxtField);
         jLabel1.setText("Usuário");
 
-        senhaTxtField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        senhaTxtField.setToolTipText("Senha");
-        senhaTxtField.setName("senhaTxtField"); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setLabelFor(senhaTxtField);
         jLabel2.setText("Senha");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/biosense/imgs/bioSense-logo_menor.png"))); // NOI18N
@@ -67,6 +64,14 @@ public class Login extends javax.swing.JFrame {
         btnEntrar.setBackground(new java.awt.Color(153, 255, 153));
         btnEntrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEntrar.setText("Entrar");
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+
+        senhaPassField.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        senhaPassField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,18 +84,18 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(senhaTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                             .addComponent(jLabel2)
-                            .addComponent(loginTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                            .addComponent(loginTxtField)
+                            .addComponent(senhaPassField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(44, 44, 44))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(115, 115, 115)
                 .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 89, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,15 +112,13 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(senhaTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(senhaPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(123, 123, 123))
         );
 
         loginTxtField.getAccessibleContext().setAccessibleName("loginTxtField");
-        senhaTxtField.getAccessibleContext().setAccessibleName("senhaTxtField");
-        senhaTxtField.getAccessibleContext().setAccessibleDescription("Password");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,6 +133,26 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private Boolean validaLogin(String username, String senha) {
+        if (username.length() == 0 || senha.length() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(null, "Preencha corretamente os Campos!");
+            return false;
+        }
+        return true;
+    }
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        String username = loginTxtField.getText();
+        String senha = senhaPassField.getText();
+        
+
+        if (validaLogin(username, senha)) {
+            System.out.println("Entrou!");
+        }
+        // Chamada ao WS
+
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +184,11 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                Login window = new Login();
+
+                window.setLocationRelativeTo(null); // Centraliza Janela
+
+                window.setVisible(true);
             }
         });
     }
@@ -174,6 +201,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField loginTxtField;
-    private javax.swing.JTextField senhaTxtField;
+    private javax.swing.JPasswordField senhaPassField;
     // End of variables declaration//GEN-END:variables
 }
