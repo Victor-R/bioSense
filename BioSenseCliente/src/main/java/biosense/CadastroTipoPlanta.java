@@ -5,7 +5,10 @@
  */
 package biosense;
 
-import biosense.classes.Planta;
+import biosensews.ws.BioSenseWS;
+import biosensews.ws.BioSenseWS_Service;
+import biosensews.ws.TipoPlanta;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -198,20 +201,31 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public int cadastrarTipoPlanta(TipoPlanta tipoPlanta) {
+        BioSenseWS_Service service = new BioSenseWS_Service();
+        BioSenseWS port = service.getBioSenseWSPort();
+        return port.cadastrarTipoPlanta(tipoPlanta);
+    }
+
     private void btnCofirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCofirmaActionPerformed
         // Salvar tipo
-        Planta novaPlanta = new Planta();
+        TipoPlanta tipoPlanta = new TipoPlanta();
 
-        novaPlanta.setNome(nomeTxtField.getText());
-        novaPlanta.setIrrigacao(irrigacaoTxtField.getText());
-        novaPlanta.setPh(phTxtField.getText());
-        novaPlanta.setSolo(soloTxtField.getText());
-        novaPlanta.setTemperatura(temperatureTxtField.getText());
-        novaPlanta.setTempoColheita(tColheitaTxtField.getText());
-        novaPlanta.setUmidade(umidadeTxtField.getText());
+        tipoPlanta.setNome(nomeTxtField.getText());
+        tipoPlanta.setIrrigacaoIdeal(Float.parseFloat(irrigacaoTxtField.getText()));
+        tipoPlanta.setPhIdeal(Float.parseFloat(phTxtField.getText()));
+        tipoPlanta.setSoloIdeal(Float.parseFloat(soloTxtField.getText()));
+        tipoPlanta.setTemperaturaIdeal(Float.parseFloat(temperatureTxtField.getText()));
+        tipoPlanta.setTempoColheita(Integer.parseInt(tColheitaTxtField.getText()));
+        tipoPlanta.setUmidadeIdeal(Float.parseFloat(umidadeTxtField.getText()));
 
-        if (validaCampos(novaPlanta)) {
-            // Enviar ao WS
+        if (validaCampos(tipoPlanta)) {
+            if (cadastrarTipoPlanta(tipoPlanta) <= 0) {
+                JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar o Tipo da Planta!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Tipo da Planta cadastrado com sucesso!");
+                // Voltar pra home?
+            }
         }
     }//GEN-LAST:event_btnCofirmaActionPerformed
 
@@ -219,9 +233,9 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    private Boolean validaCampos(Planta novaPlanta) {
-        if (novaPlanta.getNome().length() == 0) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Preencha o Nome da Planta Corretamente!");
+    private Boolean validaCampos(TipoPlanta tipoPlanta) {
+        if (tipoPlanta.getNome().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Preencha o Nome do Tipo da Planta Corretamente!");
             return false;
         }
 

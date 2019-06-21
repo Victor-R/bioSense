@@ -5,6 +5,11 @@
  */
 package biosense;
 
+import biosensews.ws.BioSenseWS;
+import biosensews.ws.BioSenseWS_Service;
+import biosensews.ws.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author victo
@@ -136,7 +141,7 @@ public class Login extends javax.swing.JFrame {
 
     private Boolean validaLogin(String username, String senha) {
         if (username.length() == 0 || senha.length() == 0) {
-            javax.swing.JOptionPane.showMessageDialog(null, "Preencha corretamente os Campos!");
+            JOptionPane.showMessageDialog(null, "Preencha corretamente os Campos!");
             return false;
         }
         return true;
@@ -145,13 +150,20 @@ public class Login extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         String username = loginTxtField.getText();
         String senha = senhaPassField.getText();
-        
 
         if (validaLogin(username, senha)) {
-            System.out.println("Entrou!");
-        }
-        // Chamada ao WS
+            BioSenseWS_Service service = new BioSenseWS_Service();
+            BioSenseWS port = service.getBioSenseWSPort();
 
+            Usuario usuario = port.login(username, senha);
+            if (usuario == null) {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Login realizado com sucesso");
+                // Vai pra outra tela
+            }
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**

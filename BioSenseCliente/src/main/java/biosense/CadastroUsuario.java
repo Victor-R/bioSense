@@ -5,7 +5,10 @@
  */
 package biosense;
 
-import biosense.classes.Usuario;
+import biosensews.ws.BioSenseWS;
+import biosensews.ws.BioSenseWS_Service;
+import biosensews.ws.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -247,14 +250,15 @@ public class CadastroUsuario extends javax.swing.JFrame {
         }
 
         if (!valid) {
-            javax.swing.JOptionPane.showMessageDialog(null, mensagem);
+            JOptionPane.showMessageDialog(null, mensagem);
         }
         return valid;
     }
 
-    public static boolean cadastrarUsuario(Usuario e) {
-        System.out.println("Cadastrei Weee");
-        return true;
+    public int cadastrarUsuario(Usuario usuario) {
+        BioSenseWS_Service service = new BioSenseWS_Service();
+        BioSenseWS port = service.getBioSenseWSPort();
+        return port.cadastrarUsuario(usuario);
     }
 
     private void btnCofirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCofirmaActionPerformed
@@ -268,7 +272,12 @@ public class CadastroUsuario extends javax.swing.JFrame {
         novoUsuario.setCelular(celTxtField.getText());
 
         if (validaCampos(novoUsuario, conSenhaPassField.getText())) {
-            cadastrarUsuario(novoUsuario);
+            if (cadastrarUsuario(novoUsuario) <= 0) {
+                JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar o Usuário!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+                // Voltar pra home ?
+            }
         }
     }//GEN-LAST:event_btnCofirmaActionPerformed
 
