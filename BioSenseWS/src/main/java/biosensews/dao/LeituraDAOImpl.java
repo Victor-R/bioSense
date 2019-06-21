@@ -6,8 +6,6 @@
 package biosensews.dao;
 
 import biosensews.model.Leitura;
-import biosensews.model.Planta;
-import biosensews.model.TipoPlanta;
 import biosensews.utils.FabricaConexao;
 import java.sql.Connection;
 import java.sql.Date;

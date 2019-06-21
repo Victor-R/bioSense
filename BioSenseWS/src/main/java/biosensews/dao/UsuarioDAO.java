@@ -14,7 +14,7 @@ import biosensews.model.Usuario;
 public interface UsuarioDAO {
     final String INSERT_USUARIO = 
     "INSERT INTO bio_usuario(USR_NOME, USR_EMAIL, USR_LOGIN, USR_SENHA, "
-            + "USER_CELULAR, USR_TELEFONE) "
+            + "USR_CELULAR, USR_TELEFONE) "
             + "VALUES(?, ?, ?, ?, ?, ?)";
     
     final String SELECT_USUARIO_BY_LOGIN_SENHA = 

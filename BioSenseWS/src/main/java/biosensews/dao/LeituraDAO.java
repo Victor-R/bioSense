@@ -22,8 +22,8 @@ public interface LeituraDAO {
     final String SELECT_LEITURA_BY_PLANTA = 
     "SELECT LET_ID, PLT_ID, LET_DATA, LET_TEMPERATURA, LET_PH, LET_UMIDADE, "
             + "LET_IRRIGACAO, LET_QUALIDADE_SOLO "
-            + "FROM bio_leitura"
-            + "WHERE PLT_ID = ?"
+            + "FROM bio_leitura "
+            + "WHERE PLT_ID = ? "
             + "ORDER BY LET_DATA";
     
         

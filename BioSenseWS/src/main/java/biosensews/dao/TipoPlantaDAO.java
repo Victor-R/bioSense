@@ -16,7 +16,7 @@ public interface TipoPlantaDAO {
     final String INSERT_TIPO_PLANTA = 
     "INSERT INTO bio_tipo_planta(TPL_NOME, TPL_TEMPO_COLHEITA, TPL_SOLO_IDEAL, "
             + "TPL_IRRIGACAO_IDEAL, TPL_PH_IDEAL, TPL_TEMPERATURA_IDEAL, "
-            + "TPL_UMIDADE_IDEAL)"
+            + "TPL_UMIDADE_IDEAL) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?)";
     
     final String SELECT_TODOS_TIPO_PLANTA = 
