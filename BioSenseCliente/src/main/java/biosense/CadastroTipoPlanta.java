@@ -55,7 +55,7 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(102, 255, 51));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 484));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/biosense/imgs/bioSense-logo_menor.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/bioSense-logo_menor.png"))); // NOI18N
 
         jLabel6.setText("Nome");
 
@@ -178,9 +178,9 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
                             .addComponent(temperatureTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(umidadeTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCofirma, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCofirma, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 

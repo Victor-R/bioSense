@@ -56,10 +56,10 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Senha");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/biosense/imgs/bioSense-logo_menor.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/bioSense-logo_menor.png"))); // NOI18N
         jLabel3.setToolTipText("");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/biosense/imgs/sensorPlant.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/sensorPlant.png"))); // NOI18N
 
         btnEntrar.setBackground(new java.awt.Color(153, 255, 153));
         btnEntrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
