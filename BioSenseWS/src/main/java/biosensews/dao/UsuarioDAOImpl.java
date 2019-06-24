@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -45,6 +47,35 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
 
         return idUsuario;
+    }
+
+    @Override
+    public List<Usuario> todos() {
+        List<Usuario> usuarios = new ArrayList<>();
+        Usuario usuario = null;
+        Connection con = FabricaConexao.getConexao();
+        PreparedStatement pstm;
+        ResultSet res;
+
+        if (con != null) {
+            try {
+                pstm = con.prepareStatement(SELECT_TODOS_USUARIO);
+                res = pstm.executeQuery();
+                while (res.next()) {
+                    usuario = new Usuario();
+                    usuario.setId(res.getInt(1));
+                    usuario.setNome(res.getString(2));
+                    usuario.setEmail(res.getString(3));
+                    usuario.setCelular(res.getString(4));
+                    usuario.setTelefone(res.getString(5));
+                    usuarios.add(usuario);
+                }
+            } catch (SQLException ex) {
+                System.out.println("Message: " + ex.getMessage());
+            }
+        }
+
+        return usuarios;
     }
 
     @Override

@@ -6,6 +6,7 @@
 package biosensews.dao;
 
 import biosensews.model.Usuario;
+import java.util.List;
 
 /**
  *
@@ -16,6 +17,10 @@ public interface UsuarioDAO {
     "INSERT INTO bio_usuario(USR_NOME, USR_EMAIL, USR_LOGIN, USR_SENHA, "
             + "USR_CELULAR, USR_TELEFONE) "
             + "VALUES(?, ?, ?, ?, ?, ?)";
+
+    final String SELECT_TODOS_USUARIO = 
+    "SELECT USR_ID, USR_NOME, USR_EMAIL, USR_CELULAR, USR_TELEFONE "
+            + "FROM bio_usuario";
     
     final String SELECT_USUARIO_BY_LOGIN_SENHA = 
     "SELECT USR_ID, USR_NOME, USR_EMAIL, USR_CELULAR, USR_TELEFONE "
@@ -30,6 +35,7 @@ public interface UsuarioDAO {
     "UPDATE bio_usuario SET USR_SENHA = ? WHERE USR_ID = ?";
     
     public int salvar(Usuario usuario);
+    public List<Usuario> todos();
     public Usuario buscarPorLoginSenha(String login, String senha);
     public boolean editarInfo(Usuario usuario);
     public boolean editarSenha(Usuario usuario);

@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.biosensews/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.biosensews/">
+
+<xs:element name="buscarPlantaPorId" type="tns:buscarPlantaPorId"/>
+
+<xs:element name="buscarPlantaPorIdResponse" type="tns:buscarPlantaPorIdResponse"/>
+
+<xs:element name="buscarTipoPlanta" type="tns:buscarTipoPlanta"/>
+
+<xs:element name="buscarTipoPlantaResponse" type="tns:buscarTipoPlantaResponse"/>
+
+<xs:element name="cadastrarLeitura" type="tns:cadastrarLeitura"/>
+
+<xs:element name="cadastrarLeituraResponse" type="tns:cadastrarLeituraResponse"/>
+
+<xs:element name="cadastrarPlanta" type="tns:cadastrarPlanta"/>
+
+<xs:element name="cadastrarPlantaResponse" type="tns:cadastrarPlantaResponse"/>
+
+<xs:element name="cadastrarTipoPlanta" type="tns:cadastrarTipoPlanta"/>
+
+<xs:element name="cadastrarTipoPlantaResponse" type="tns:cadastrarTipoPlantaResponse"/>
+
+<xs:element name="cadastrarUsuario" type="tns:cadastrarUsuario"/>
+
+<xs:element name="cadastrarUsuarioResponse" type="tns:cadastrarUsuarioResponse"/>
+
+<xs:element name="deletarPlanta" type="tns:deletarPlanta"/>
+
+<xs:element name="deletarPlantaResponse" type="tns:deletarPlantaResponse"/>
+
+<xs:element name="editarPlanta" type="tns:editarPlanta"/>
+
+<xs:element name="editarPlantaResponse" type="tns:editarPlantaResponse"/>
+
+<xs:element name="editarTipoPlanta" type="tns:editarTipoPlanta"/>
+
+<xs:element name="editarTipoPlantaResponse" type="tns:editarTipoPlantaResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="login" type="tns:login"/>
+
+<xs:element name="loginResponse" type="tns:loginResponse"/>
+
+<xs:element name="todasLeituraPorPlanta" type="tns:todasLeituraPorPlanta"/>
+
+<xs:element name="todasLeituraPorPlantaResponse" type="tns:todasLeituraPorPlantaResponse"/>
+
+<xs:element name="todasPlantaPorUsuario" type="tns:todasPlantaPorUsuario"/>
+
+<xs:element name="todasPlantaPorUsuarioResponse" type="tns:todasPlantaPorUsuarioResponse"/>
+
+<xs:element name="todosTipoPlanta" type="tns:todosTipoPlanta"/>
+
+<xs:element name="todosTipoPlantaResponse" type="tns:todosTipoPlantaResponse"/>
+
+<xs:element name="todosUsuario" type="tns:todosUsuario"/>
+
+<xs:element name="todosUsuarioResponse" type="tns:todosUsuarioResponse"/>
+
+<xs:complexType name="editarTipoPlanta">
+<xs:sequence>
+<xs:element name="tipoPlanta" type="tns:tipoPlanta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tipoPlanta">
+<xs:sequence>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="irrigacaoIdeal" type="xs:float" minOccurs="0"/>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+<xs:element name="phIdeal" type="xs:float" minOccurs="0"/>
+<xs:element name="soloIdeal" type="xs:float" minOccurs="0"/>
+<xs:element name="temperaturaIdeal" type="xs:float" minOccurs="0"/>
+<xs:element name="tempoColheita" type="xs:int"/>
+<xs:element name="umidadeIdeal" type="xs:float" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarTipoPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarPlanta">
+<xs:sequence>
+<xs:element name="planta" type="tns:planta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="planta">
+<xs:sequence>
+<xs:element name="dataPlantio" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="quantidade" type="xs:int"/>
+<xs:element name="tipoPlanta" type="tns:tipoPlanta" minOccurs="0"/>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="usuario">
+<xs:sequence>
+<xs:element name="celular" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="login" type="xs:string" minOccurs="0"/>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+<xs:element name="senha" type="xs:string" minOccurs="0"/>
+<xs:element name="telefone" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarTipoPlanta">
+<xs:sequence>
+<xs:element name="idTipoPlanta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarTipoPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tipoPlanta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarLeitura">
+<xs:sequence>
+<xs:element name="leitura" type="tns:leitura" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="leitura">
+<xs:sequence>
+<xs:element name="data" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="irrigacao" type="xs:float"/>
+<xs:element name="ph" type="xs:float"/>
+<xs:element name="planta" type="tns:planta" minOccurs="0"/>
+<xs:element name="solo" type="xs:float"/>
+<xs:element name="temperatura" type="xs:float"/>
+<xs:element name="umidade" type="xs:float"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarLeituraResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarTipoPlanta">
+<xs:sequence>
+<xs:element name="tipoPlanta" type="tns:tipoPlanta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarTipoPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="login">
+<xs:sequence>
+<xs:element name="login" type="xs:string" minOccurs="0"/>
+<xs:element name="senha" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="loginResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deletarPlanta">
+<xs:sequence>
+<xs:element name="idPlanta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deletarPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todasLeituraPorPlanta">
+<xs:sequence>
+<xs:element name="idPlanta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todasLeituraPorPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:leitura" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarPlantaPorId">
+<xs:sequence>
+<xs:element name="idPlanta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="buscarPlantaPorIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:planta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todosTipoPlanta">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="todosTipoPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tipoPlanta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPlanta">
+<xs:sequence>
+<xs:element name="planta" type="tns:planta" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todasPlantaPorUsuario">
+<xs:sequence>
+<xs:element name="idUsuario" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todasPlantaPorUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:planta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todosUsuario">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="todosUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarUsuario">
+<xs:sequence>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

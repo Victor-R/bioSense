@@ -8,6 +8,7 @@ package biosensews.service;
 import biosensews.dao.FabricaDAO;
 import biosensews.dao.UsuarioDAO;
 import biosensews.model.Usuario;
+import java.util.List;
 
 /**
  *
@@ -24,6 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public int cadastrar(Usuario usuario) {
         return this.usuarioDAO.salvar(usuario);
+    }
+    
+    @Override
+    public List<Usuario> todos() {
+        return this.usuarioDAO.todos();
     }
 
     @Override

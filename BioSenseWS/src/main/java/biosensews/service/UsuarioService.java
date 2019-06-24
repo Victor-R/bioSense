@@ -6,6 +6,7 @@
 package biosensews.service;
 
 import biosensews.model.Usuario;
+import java.util.List;
 
 /**
  *
@@ -14,6 +15,8 @@ import biosensews.model.Usuario;
 public interface UsuarioService {
 
     public int cadastrar(Usuario usuario);
+    
+    public List<Usuario> todos();
 
     public Usuario login(String login, String senha);
 

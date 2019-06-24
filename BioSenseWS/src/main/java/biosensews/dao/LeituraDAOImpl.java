@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class LeituraDAOImpl implements LeituraDAO {
             try {
                 pstm = con.prepareStatement(INSERT_LEITURA, PreparedStatement.RETURN_GENERATED_KEYS);
                 pstm.setInt(1, leitura.getPlanta().getId());
-                pstm.setDate(2, new Date(leitura.getData().getTime()));
+                pstm.setTimestamp(2, new Timestamp(leitura.getData().getTime()));
                 pstm.setFloat(3, leitura.getTemperatura());
                 pstm.setFloat(4, leitura.getPh());
                 pstm.setFloat(5, leitura.getUmidade());
@@ -67,7 +68,7 @@ public class LeituraDAOImpl implements LeituraDAO {
                 while (res.next()) {
                     leitura = new Leitura();
                     leitura.setId(res.getInt(1));
-                    leitura.setData(res.getDate(2));
+                    leitura.setData(res.getTimestamp(2));
                     leitura.setTemperatura(res.getFloat(3));
                     leitura.setPh(res.getFloat(4));
                     leitura.setUmidade(res.getFloat(5));
