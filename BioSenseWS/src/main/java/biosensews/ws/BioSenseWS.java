@@ -203,4 +203,26 @@ public class BioSenseWS {
         UsuarioService us = FabricaService.getUsuarioService();
         return us.todos();
     }
+
+    /**
+     * Operação de Web service
+     * @param usuario
+     * @return 
+     */
+    @WebMethod(operationName = "editarInfoUsuario")
+    public boolean editarInfoUsuario(@WebParam(name = "usuario") Usuario usuario) {
+        UsuarioService us = FabricaService.getUsuarioService();
+        return us.editarInfo(usuario);
+    }
+
+    /**
+     * Operação de Web service
+     * @param usuario
+     * @return 
+     */
+    @WebMethod(operationName = "editarSenhaUsuario")
+    public boolean editarSenhaUsuario(@WebParam(name = "usuario") Usuario usuario) {
+        UsuarioService us = FabricaService.getUsuarioService();
+        return us.editarSenha(usuario);
+    }
 }

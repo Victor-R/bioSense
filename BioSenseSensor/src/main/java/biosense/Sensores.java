@@ -41,13 +41,18 @@ public class Sensores extends javax.swing.JFrame {
         initComponents();
 
         this.random = new Random();
-        
         BioSenseWS_Service service = new BioSenseWS_Service();
         this.port = service.getBioSenseWSPort();
+
         List<Usuario> usuarios = port.todosUsuario();
         usuarios.forEach(usuario -> cbUsuarios.addItem(usuario));
         cbUsuarios.setRenderer(new ObjectListCellRenderer());
         cbPlantas.setRenderer(new ObjectListCellRenderer());
+
+        rbModoAuto.setSelected(true);
+        rbModoAuto.setActionCommand("auto");
+        rbModoCresc.setActionCommand("cresc");
+        rbModoDec.setActionCommand("dec");
     }
 
     public class GeraLeituraTask extends TimerTask {
@@ -67,24 +72,24 @@ public class Sensores extends javax.swing.JFrame {
                     novaLeitura.setPh(Float.parseFloat(txtPh.getText()));
                     novaLeitura.setSolo(Float.parseFloat(txtSolo.getText()));
                 } else {
-                    sinal = (random.nextInt(10) <= 4) ? -1 : 1;
-                    taxaSoma = Float.parseFloat(txtlTaxaIrrigacao.getText()) * sinal;
+                    sinal = calculaSinal();
+                    taxaSoma = Float.parseFloat(txtTaxaIrrigacao.getText()) * sinal;
                     novaLeitura.setIrrigacao(ultimaLeitura.getIrrigacao() + taxaSoma);
 
-                    sinal = (random.nextInt(10) <= 4) ? -1 : 1;
-                    taxaSoma = Float.parseFloat(txtlTaxaTemp.getText()) * sinal;
+                    sinal = calculaSinal();
+                    taxaSoma = Float.parseFloat(txtTaxaTemp.getText()) * sinal;
                     novaLeitura.setTemperatura(ultimaLeitura.getTemperatura() + taxaSoma);
 
-                    sinal = (random.nextInt(10) <= 4) ? -1 : 1;
-                    taxaSoma = Float.parseFloat(txtlTaxaUmidade.getText()) * sinal;
+                    sinal = calculaSinal();
+                    taxaSoma = Float.parseFloat(txtTaxaUmidade.getText()) * sinal;
                     novaLeitura.setUmidade(ultimaLeitura.getUmidade() + taxaSoma);
 
-                    sinal = (random.nextInt(10) <= 4) ? -1 : 1;
-                    taxaSoma = Float.parseFloat(txtlTaxaPh.getText()) * sinal;
+                    sinal = calculaSinal();
+                    taxaSoma = Float.parseFloat(txtTaxaPh.getText()) * sinal;
                     novaLeitura.setPh(ultimaLeitura.getPh() + taxaSoma);
 
-                    sinal = (random.nextInt(10) <= 4) ? -1 : 1;
-                    taxaSoma = Float.parseFloat(txtlTaxaSolo.getText()) * sinal;
+                    sinal = calculaSinal();
+                    taxaSoma = Float.parseFloat(txtTaxaSolo.getText()) * sinal;
                     novaLeitura.setSolo(ultimaLeitura.getSolo() + taxaSoma);
                 }
 
@@ -97,6 +102,18 @@ public class Sensores extends javax.swing.JFrame {
         }
     }
 
+    private int calculaSinal() {
+        String modo = btgModo.getSelection().getActionCommand();
+        switch (modo) {
+            case "cresc":
+                return 1;
+            case "dec":
+                return -1;
+            default:
+                return (random.nextInt(10) <= 4) ? -1 : 1;
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,6 +123,7 @@ public class Sensores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btgModo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         lblUsuarios = new javax.swing.JLabel();
         cbUsuarios = new javax.swing.JComboBox<>();
@@ -128,12 +146,16 @@ public class Sensores extends javax.swing.JFrame {
         lbllTaxaIrrigacao = new javax.swing.JLabel();
         lbllTaxaSolo = new javax.swing.JLabel();
         lbllTaxaUmidade = new javax.swing.JLabel();
-        txtlTaxaTemp = new javax.swing.JTextField();
-        txtlTaxaUmidade = new javax.swing.JTextField();
-        txtlTaxaIrrigacao = new javax.swing.JTextField();
-        txtlTaxaSolo = new javax.swing.JTextField();
-        txtlTaxaPh = new javax.swing.JTextField();
+        txtTaxaTemp = new javax.swing.JTextField();
+        txtTaxaUmidade = new javax.swing.JTextField();
+        txtTaxaIrrigacao = new javax.swing.JTextField();
+        txtTaxaSolo = new javax.swing.JTextField();
+        txtTaxaPh = new javax.swing.JTextField();
         btSimulacao = new javax.swing.JButton();
+        rbModoAuto = new javax.swing.JRadioButton();
+        lblPerfil = new javax.swing.JLabel();
+        rbModoCresc = new javax.swing.JRadioButton();
+        rbModoDec = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -201,6 +223,21 @@ public class Sensores extends javax.swing.JFrame {
             }
         });
 
+        btgModo.add(rbModoAuto);
+        rbModoAuto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbModoAuto.setText("Modo Automático");
+
+        lblPerfil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblPerfil.setText("Perfil de Simulação");
+
+        btgModo.add(rbModoCresc);
+        rbModoCresc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbModoCresc.setText("Modo Crescente");
+
+        btgModo.add(rbModoDec);
+        rbModoDec.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbModoDec.setText("Modo Decrescente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,6 +260,19 @@ public class Sensores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rbModoAuto)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btSimulacao)
+                                .addGap(165, 165, 165))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(rbModoCresc)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbModoDec)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -253,7 +303,7 @@ public class Sensores extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(lblTaxaTemp)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtlTaxaTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtTaxaTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(17, 17, 17))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,16 +311,16 @@ public class Sensores extends javax.swing.JFrame {
                                             .addComponent(lbllTaxaPh))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtlTaxaPh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtlTaxaUmidade, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtTaxaPh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTaxaUmidade, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbllTaxaIrrigacao)
                                     .addComponent(lbllTaxaSolo))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtlTaxaSolo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtlTaxaIrrigacao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtTaxaSolo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTaxaIrrigacao, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -278,12 +328,13 @@ public class Sensores extends javax.swing.JFrame {
                         .addGap(148, 148, 148))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblValorInicial1)
-                .addGap(126, 126, 126))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addComponent(btSimulacao)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblValorInicial1)
+                        .addGap(126, 126, 126))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblPerfil)
+                        .addGap(174, 174, 174))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,21 +371,28 @@ public class Sensores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTaxaTemp)
                     .addComponent(lbllTaxaIrrigacao)
-                    .addComponent(txtlTaxaTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtlTaxaIrrigacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTaxaTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTaxaIrrigacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbllTaxaUmidade)
                     .addComponent(lbllTaxaSolo)
-                    .addComponent(txtlTaxaUmidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtlTaxaSolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTaxaUmidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTaxaSolo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbllTaxaPh)
-                    .addComponent(txtlTaxaPh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTaxaPh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(lblPerfil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbModoAuto)
+                    .addComponent(rbModoCresc)
+                    .addComponent(rbModoDec))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(btSimulacao)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -361,19 +419,19 @@ public class Sensores extends javax.swing.JFrame {
         } else if (this.selectedPlanta == null) {
             JOptionPane.showMessageDialog(null, "Selecione uma Planta");
             return false;
-        } else if (StringUtils.IsNullOrEmpty(txtTemp.getText()) || StringUtils.IsNullOrEmpty(txtlTaxaTemp.getText())) {
+        } else if (StringUtils.IsNullOrEmpty(txtTemp.getText()) || StringUtils.IsNullOrEmpty(txtTaxaTemp.getText())) {
             JOptionPane.showMessageDialog(null, "Preencha a Temperatura Inicial e sua Taxa de Variação");
             return false;
-        } else if (StringUtils.IsNullOrEmpty(txtIrrigacao.getText()) || StringUtils.IsNullOrEmpty(txtlTaxaIrrigacao.getText())) {
+        } else if (StringUtils.IsNullOrEmpty(txtIrrigacao.getText()) || StringUtils.IsNullOrEmpty(txtTaxaIrrigacao.getText())) {
             JOptionPane.showMessageDialog(null, "Preencha a Irrigação Inicial e sua Taxa de Variação");
             return false;
-        } else if (StringUtils.IsNullOrEmpty(txtPh.getText()) || StringUtils.IsNullOrEmpty(txtlTaxaPh.getText())) {
+        } else if (StringUtils.IsNullOrEmpty(txtPh.getText()) || StringUtils.IsNullOrEmpty(txtTaxaPh.getText())) {
             JOptionPane.showMessageDialog(null, "Preencha o PH Inicial e sua Taxa de Variação");
             return false;
-        } else if (StringUtils.IsNullOrEmpty(txtlTaxaUmidade.getText()) || StringUtils.IsNullOrEmpty(txtlTaxaUmidade.getText())) {
+        } else if (StringUtils.IsNullOrEmpty(txtTaxaUmidade.getText()) || StringUtils.IsNullOrEmpty(txtTaxaUmidade.getText())) {
             JOptionPane.showMessageDialog(null, "Preencha a Umidade Inicial e sua Taxa de variação");
             return false;
-        } else if (StringUtils.IsNullOrEmpty(txtlTaxaSolo.getText()) || StringUtils.IsNullOrEmpty(txtlTaxaSolo.getText())) {
+        } else if (StringUtils.IsNullOrEmpty(txtTaxaSolo.getText()) || StringUtils.IsNullOrEmpty(txtTaxaSolo.getText())) {
             JOptionPane.showMessageDialog(null, "Preencha a Qualidade do Solo Inicial e sua Taxa de variação");
             return false;
         }
@@ -386,20 +444,38 @@ public class Sensores extends javax.swing.JFrame {
         if (!simulacao) {
             if (validaCampos()) {
                 simulacao = true;
-                cbPlantas.setEnabled(false);
-                cbUsuarios.setEnabled(false);
+                alterarComponentesAtivos(false);
                 btSimulacao.setText("Parar Simulação");
                 timer = new Timer();
                 timer.schedule(new GeraLeituraTask(), 0, 5000);
             }
         } else {
             simulacao = false;
-            cbPlantas.setEnabled(true);
-            cbUsuarios.setEnabled(true);
+            alterarComponentesAtivos(true);
             btSimulacao.setText("Iniciar Simulação");
             timer.cancel();
         }
     }//GEN-LAST:event_btSimulacaoActionPerformed
+
+    private void alterarComponentesAtivos(boolean enabled) {
+        cbPlantas.setEnabled(enabled);
+        cbUsuarios.setEnabled(enabled);
+        txtTaxaIrrigacao.setEnabled(enabled);
+        txtTaxaPh.setEnabled(enabled);
+        txtTaxaSolo.setEnabled(enabled);
+        txtTaxaTemp.setEnabled(enabled);
+        txtTaxaUmidade.setEnabled(enabled);
+        /*
+        txtIrrigacao.setEnabled(enabled);
+        txtPh.setEnabled(enabled);
+        txtSolo.setEnabled(enabled);
+        txtTemp.setEnabled(enabled);
+        txtUmidade.setEnabled(enabled);
+        rbModoAuto.setEnabled(enabled);
+        rbModoCresc.setEnabled(enabled);
+        rbModoDec.setEnabled(enabled);
+         */
+    }
 
     private void cbPlantasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbPlantasItemStateChanged
         // TODO add your handling code here:
@@ -451,10 +527,12 @@ public class Sensores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSimulacao;
+    private javax.swing.ButtonGroup btgModo;
     private javax.swing.JComboBox<Planta> cbPlantas;
     private javax.swing.JComboBox<Usuario> cbUsuarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblIrrigacao;
+    private javax.swing.JLabel lblPerfil;
     private javax.swing.JLabel lblPh;
     private javax.swing.JLabel lblPlantas;
     private javax.swing.JLabel lblSolo;
@@ -468,15 +546,18 @@ public class Sensores extends javax.swing.JFrame {
     private javax.swing.JLabel lbllTaxaPh;
     private javax.swing.JLabel lbllTaxaSolo;
     private javax.swing.JLabel lbllTaxaUmidade;
+    private javax.swing.JRadioButton rbModoAuto;
+    private javax.swing.JRadioButton rbModoCresc;
+    private javax.swing.JRadioButton rbModoDec;
     private javax.swing.JTextField txtIrrigacao;
     private javax.swing.JTextField txtPh;
     private javax.swing.JTextField txtSolo;
+    private javax.swing.JTextField txtTaxaIrrigacao;
+    private javax.swing.JTextField txtTaxaPh;
+    private javax.swing.JTextField txtTaxaSolo;
+    private javax.swing.JTextField txtTaxaTemp;
+    private javax.swing.JTextField txtTaxaUmidade;
     private javax.swing.JTextField txtTemp;
     private javax.swing.JTextField txtUmidade;
-    private javax.swing.JTextField txtlTaxaIrrigacao;
-    private javax.swing.JTextField txtlTaxaPh;
-    private javax.swing.JTextField txtlTaxaSolo;
-    private javax.swing.JTextField txtlTaxaTemp;
-    private javax.swing.JTextField txtlTaxaUmidade;
     // End of variables declaration//GEN-END:variables
 }

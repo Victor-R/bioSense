@@ -36,4 +36,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     public Usuario login(String login, String senha) {
         return this.usuarioDAO.buscarPorLoginSenha(login, senha);
     }
+    
+    @Override
+    public boolean editarInfo(Usuario usuario) {
+        return this.usuarioDAO.editarInfo(usuario);
+    }
+    
+    @Override
+    public boolean editarSenha(Usuario usuario) {
+        return this.usuarioDAO.editarSenha(usuario);
+    }
 }

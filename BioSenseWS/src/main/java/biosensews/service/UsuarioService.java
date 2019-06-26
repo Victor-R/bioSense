@@ -15,9 +15,12 @@ import java.util.List;
 public interface UsuarioService {
 
     public int cadastrar(Usuario usuario);
-    
+
     public List<Usuario> todos();
 
     public Usuario login(String login, String senha);
 
+    public boolean editarInfo(Usuario usuario);
+
+    public boolean editarSenha(Usuario usuario);
 }
