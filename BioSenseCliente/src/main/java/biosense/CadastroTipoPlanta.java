@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author victo
+ * @author Victor Ribeiro
  */
 public class CadastroTipoPlanta extends javax.swing.JFrame {
 
@@ -201,12 +201,23 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /** Cadastra um novo tipo de Planta através do WebService
+     * @param tipoPlanta Objeto com todas as propriedades do novo tipo de planta
+     * @return menor ou igual a 0 se algum erro encontrado ou
+     * maior que zero caso sucesso
+     * @author Lucas Leandro
+    */
     public int cadastrarTipoPlanta(TipoPlanta tipoPlanta) {
         BioSenseWS_Service service = new BioSenseWS_Service();
         BioSenseWS port = service.getBioSenseWSPort();
         return port.cadastrarTipoPlanta(tipoPlanta);
     }
 
+    /** Evento de click do botão Confirma
+     * @param evt Evento java
+     * @author Victor Ribeiro
+     * @author Lucas Leandro
+    */
     private void btnCofirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCofirmaActionPerformed
         // Salvar tipo
         TipoPlanta tipoPlanta = new TipoPlanta();
@@ -229,6 +240,10 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCofirmaActionPerformed
 
+    /** Evento de click do botão Cancelar - Fecha Jframe
+     * @param evt Evento java
+     * @author Victor Ribeiro
+    */
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed

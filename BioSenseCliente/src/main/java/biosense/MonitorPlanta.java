@@ -18,7 +18,7 @@ import java.awt.GridLayout;
 
 /**
  *
- * @author victo
+ * @author Victor Ribeiro
  */
 public class MonitorPlanta extends javax.swing.JPanel {
 
@@ -27,6 +27,13 @@ public class MonitorPlanta extends javax.swing.JPanel {
     private static double[][] phData = {{1, 2, 3}, {0.8, 0.9, 0.2}};
     private static double[][] soloData = {{1, 2, 3}, {0.1, 0.2, 0.3}};
 
+    /**
+     * Gera um dataset do tipo double, para um gráfico xy
+     *
+     * @param componentName Nome do gráfico a ser atendido
+     * @return XYDataset um dataset de double[][] com valores de XY
+     * @author Victor Ribeiro
+     */
     private static XYDataset createDataset(String componentName) {
 
         DefaultXYDataset ds = new DefaultXYDataset();
@@ -43,15 +50,24 @@ public class MonitorPlanta extends javax.swing.JPanel {
                 break;
             case "Solo":
                 ds.addSeries("Solo", soloData);
-            break;
-            default: break;
+                break;
+            default:
+                break;
         }
 
         return ds;
     }
 
+    /**
+     * Construtor de um gráfico de monitoramento
+     *
+     * @param title Título do gráfico
+     * @param xTitle Título do eixo X
+     * @param yTitle Título do eixo Y
+     * @author Victor Ribeiro
+     */
     public MonitorPlanta(String title, String xTitle, String yTitle) {
-        this.setLayout(new FlowLayout());        
+        this.setLayout(new FlowLayout());
         XYDataset dataset = createDataset(title);
 
         JFreeChart chart = ChartFactory.createXYLineChart(title,
@@ -62,19 +78,25 @@ public class MonitorPlanta extends javax.swing.JPanel {
 
     }
 
+    /**
+     * Função Principal - Constrói os gráficos dentro de um JFrame
+     *
+     * @param args the command line arguments
+     * @author Victor Ribeiro
+     */
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new JFrame("Monitor Planta");                
-                
+                JFrame frame = new JFrame("Monitor Planta");
+
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLayout(new GridLayout(2, 0));
-                
-                frame.add(new MonitorPlanta("Umidade", "Nível", "Tempo"));                
-                frame.add(new MonitorPlanta("Temperatura", "Nível", "Tempo"));                
-                frame.add(new MonitorPlanta("PH", "Nível", "Tempo"));                
+
+                frame.add(new MonitorPlanta("Umidade", "Nível", "Tempo"));
+                frame.add(new MonitorPlanta("Temperatura", "Nível", "Tempo"));
+                frame.add(new MonitorPlanta("PH", "Nível", "Tempo"));
                 frame.add(new MonitorPlanta("Solo", "Nível", "Tempo"));
                 frame.pack();
                 frame.setVisible(true);

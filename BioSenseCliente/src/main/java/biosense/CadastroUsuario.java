@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author victo
+ * @author Victor Ribeiro
  */
 public class CadastroUsuario extends javax.swing.JFrame {
 
@@ -224,6 +224,13 @@ public class CadastroUsuario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /** Valida campos inseridos para o Cadastro
+     * @param user Nome de Usuário
+     * @param confirmarSenha Campo de confirmar Senha
+     * @return true Se campos estão válidos 
+     * ou false se os campos estão inválidos
+     * @author Victor Ribeiro
+    */
     private Boolean validaCampos(Usuario user, String confirmarSenha) {
         Boolean valid = true;
         String mensagem = "";
@@ -255,12 +262,23 @@ public class CadastroUsuario extends javax.swing.JFrame {
         return valid;
     }
 
+    /** Função que realiza o cadastro do usuário pelo WebService
+     * @param usuario Objeto que contém todos os campos do usuário
+     * @return menor ou igual a 0 caso um erro seja encontrado ou
+     * maior que zero caso sucesso
+     * @author Lucas Leandro
+     */
     public int cadastrarUsuario(Usuario usuario) {
         BioSenseWS_Service service = new BioSenseWS_Service();
         BioSenseWS port = service.getBioSenseWSPort();
         return port.cadastrarUsuario(usuario);
     }
 
+    /** Evento de click do botão Confirma Cadastro
+     * @param evt Evento java
+     * @author Victor Ribeiro
+     * @author Lucas Leandro
+     */
     private void btnCofirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCofirmaActionPerformed
         Usuario novoUsuario = new Usuario();
 
@@ -281,6 +299,10 @@ public class CadastroUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCofirmaActionPerformed
 
+    /** Evento de Click do botão Cancela - Fecha Jframe
+     * @param evt Evento Java
+     * @author Victor Ribeiro
+    */
     private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelaActionPerformed

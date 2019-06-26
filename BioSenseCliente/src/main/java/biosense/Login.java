@@ -10,9 +10,9 @@ import biosensews.ws.BioSenseWS_Service;
 import biosensews.ws.Usuario;
 import javax.swing.JOptionPane;
 
-/**
+/** 
  *
- * @author victo
+ * @author Victor Ribeiro
  */
 public class Login extends javax.swing.JFrame {
 
@@ -139,6 +139,13 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /** Função que valida o login e senha inseridos
+     * @params username Nome de usuário
+     * @params senha Senha do usuário
+     * @return true usuário válido
+     * @return false usuário inválido
+     * @author Victor Ribeiro
+    */
     private Boolean validaLogin(String username, String senha) {
         if (username.length() == 0 || senha.length() == 0) {
             JOptionPane.showMessageDialog(null, "Preencha corretamente os Campos!");
@@ -147,6 +154,11 @@ public class Login extends javax.swing.JFrame {
         return true;
     }
 
+    /** Função de click no Botão Entrar
+     * @param Evt evento Java
+     * @return void
+     * @author Victor Ribeiro
+    */
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         String username = loginTxtField.getText();
         String senha = senhaPassField.getText();
