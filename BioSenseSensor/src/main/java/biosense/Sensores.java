@@ -39,6 +39,7 @@ public class Sensores extends javax.swing.JFrame {
 
     public Sensores() {
         initComponents();
+        setLocationRelativeTo(null);
 
         this.random = new Random();
         BioSenseWS_Service service = new BioSenseWS_Service();
@@ -520,7 +521,11 @@ public class Sensores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sensores().setVisible(true);
+                Sensores window = new Sensores();
+
+                window.setLocationRelativeTo(null); // Centraliza Janela
+
+                window.setVisible(true);
             }
         });
     }

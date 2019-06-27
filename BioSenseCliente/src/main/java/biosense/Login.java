@@ -168,12 +168,17 @@ public class Login extends javax.swing.JFrame {
             BioSenseWS port = service.getBioSenseWSPort();
 
             Usuario usuario = port.login(username, senha);
+            
+            UserInfo.setUser(usuario);
+            
             if (usuario == null) {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos");
             }
             else {
                 JOptionPane.showMessageDialog(null, "Login realizado com sucesso");
-                // Vai pra outra tela
+                BioHome home = new BioHome();
+                home.setVisible(true);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
@@ -209,9 +214,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Login window = new Login();
-
                 window.setLocationRelativeTo(null); // Centraliza Janela
-
                 window.setVisible(true);
             }
         });

@@ -18,10 +18,11 @@ import org.knowm.xchart.XYChartBuilder;
 import org.knowm.xchart.XYSeries;
 import org.knowm.xchart.style.markers.SeriesMarkers;
 
-/**
- *
- * @author Matheus Gaseta
- */
+/** Função de Cadastro de Planta
+* @param planta Objeto planta
+* @return valor <= 0 se houver erro, senão retorna > 0
+* @author Matheus Gaseta
+*/
 public class Graficos {
 
     public static void main(String[] args) throws Exception {

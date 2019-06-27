@@ -21,6 +21,7 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
      */
     public CadastroTipoPlanta() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -235,7 +236,9 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar o Tipo da Planta!");
             } else {
                 JOptionPane.showMessageDialog(null, "Tipo da Planta cadastrado com sucesso!");
-                // Voltar pra home?
+                BioHome home = new BioHome();
+                home.setVisible(true);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_btnCofirmaActionPerformed
@@ -245,6 +248,8 @@ public class CadastroTipoPlanta extends javax.swing.JFrame {
      * @author Victor Ribeiro
     */
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        BioHome home = new BioHome();
+        home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 

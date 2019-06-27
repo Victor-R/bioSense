@@ -21,6 +21,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
      */
     public CadastroUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -82,7 +83,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jLabel7.setText("Confirmar Senha");
 
         btnCofirma.setBackground(new java.awt.Color(153, 255, 153));
-        btnCofirma.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCofirma.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCofirma.setText("Confirmar");
         btnCofirma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,7 +295,9 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ocorreu um problema ao cadastrar o Usuário!");
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-                // Voltar pra home ?
+                BioHome home = new BioHome();
+                home.setVisible(true);
+                this.dispose();
             }
         }
     }//GEN-LAST:event_btnCofirmaActionPerformed
@@ -304,6 +307,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
      * @author Victor Ribeiro
     */
     private void btnCancelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaActionPerformed
+        BioHome home = new BioHome();
+        home.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelaActionPerformed
 
