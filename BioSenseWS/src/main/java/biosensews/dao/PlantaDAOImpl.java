@@ -22,12 +22,6 @@ import java.util.List;
  */
 public class PlantaDAOImpl implements PlantaDAO {
 
-    /**
-     * Cadastra uma nova Planta no banco de dados
-     *
-     * @param planta Planta a ser cadastrada
-     * @return Id da Planta cadastrada
-     */
     @Override
     public int salvar(Planta planta) {
         Connection con = FabricaConexao.getConexao();
@@ -55,12 +49,6 @@ public class PlantaDAOImpl implements PlantaDAO {
         return idPlanta;
     }
 
-    /**
-     * Todas as plantas de um usuário
-     *
-     * @param idUsuario Id do usuário a ser buscado
-     * @return Lista das plantas solicitadas
-     */
     @Override
     public List<Planta> buscarPorUsuario(int idUsuario) {
         List<Planta> plantas = new ArrayList<>();
@@ -102,12 +90,6 @@ public class PlantaDAOImpl implements PlantaDAO {
         return plantas;
     }
 
-    /**
-     * Busca uma determinada planta
-     *
-     * @param idPlanta Id da planta a ser buscada
-     * @return Planta solicitada
-     */
     @Override
     public Planta buscarPorId(int idPlanta) {
         Planta planta = null;
@@ -147,12 +129,6 @@ public class PlantaDAOImpl implements PlantaDAO {
         return planta;
     }
 
-    /**
-     * Edita uma determinada planta
-     *
-     * @param planta Planta a ser editada
-     * @return true caso a planta tenha sido editada com sucesso
-     */
     @Override
     public boolean editar(Planta planta) {
         boolean b = false;
@@ -176,12 +152,6 @@ public class PlantaDAOImpl implements PlantaDAO {
         return b;
     }
 
-    /**
-     * Deleta a planta solicitada
-     *
-     * @param idPlanta Id da planta a ser deletada
-     * @return true caso a planta tenha sido deletada com sucesso
-     */
     @Override
     public boolean deletar(int idPlanta) {
         boolean b = false;

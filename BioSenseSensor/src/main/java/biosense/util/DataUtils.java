@@ -18,12 +18,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 public class DataUtils {
 
-    /**
-     * Converte para String uma data e a formata como dd/MM/yyyy
-     *
-     * @param date Data a ser convertida para String
-     * @return Data convertida e formatada
-     */
     public static String GregorianCalendarToString(XMLGregorianCalendar date) {
         Calendar calendar = date.toGregorianCalendar();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -32,11 +26,6 @@ public class DataUtils {
         return dateString;
     }
 
-    /**
-     * Pega a data atual no formato XMLGregorianCalendar
-     *
-     * @return Data atual no formato desejado
-     */
     public static XMLGregorianCalendar GetTodayDate() {
         try {
             return DatatypeFactory.newInstance().newXMLGregorianCalendar(new GregorianCalendar());

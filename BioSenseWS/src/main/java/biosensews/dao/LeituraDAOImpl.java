@@ -6,8 +6,10 @@
 package biosensews.dao;
 
 import biosensews.model.Leitura;
+import biosensews.model.Planta;
 import biosensews.utils.FabricaConexao;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,12 +23,6 @@ import java.util.List;
  */
 public class LeituraDAOImpl implements LeituraDAO {
 
-    /**
-     * Cadastra uma nova Leitura no banco de dados
-     *
-     * @param leitura A ser gravada
-     * @return Id da Leitura inserida
-     */
     @Override
     public int salvar(Leitura leitura) {
         Connection con = FabricaConexao.getConexao();
@@ -57,16 +53,11 @@ public class LeituraDAOImpl implements LeituraDAO {
         return idLeitura;
     }
 
-    /**
-     * Busca todas as leituras de uma determinada planta
-     *
-     * @param idPlanta Id da planta a ser buscada
-     * @return Lista de leituras da planta
-     */
     @Override
     public List<Leitura> buscarPorPlanta(int idPlanta) {
         List<Leitura> leituras = new ArrayList<>();
         Leitura leitura;
+        Planta planta;
         Connection con = FabricaConexao.getConexao();
         PreparedStatement pstm;
         ResultSet res;
@@ -78,13 +69,15 @@ public class LeituraDAOImpl implements LeituraDAO {
                 res = pstm.executeQuery();
                 while (res.next()) {
                     leitura = new Leitura();
+                    planta = new Planta();
                     leitura.setId(res.getInt(1));
-                    leitura.setData(res.getTimestamp(2));
-                    leitura.setTemperatura(res.getFloat(3));
-                    leitura.setPh(res.getFloat(4));
-                    leitura.setUmidade(res.getFloat(5));
-                    leitura.setIrrigacao(res.getFloat(6));
-                    leitura.setSolo(res.getFloat(7));
+                    planta.setId(res.getInt(2));
+                    leitura.setData(res.getTimestamp(3));
+                    leitura.setTemperatura(res.getFloat(4));
+                    leitura.setPh(res.getFloat(5));
+                    leitura.setUmidade(res.getFloat(6));
+                    leitura.setIrrigacao(res.getFloat(7));
+                    leitura.setSolo(res.getFloat(8));
                     leituras.add(leitura);
                 }
             } catch (SQLException ex) {

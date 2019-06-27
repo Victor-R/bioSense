@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.biosensews/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.biosensews/">
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.biosensews/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.biosensews/">
 
 <xs:element name="buscarPlantaPorId" type="tns:buscarPlantaPorId"/>
 
@@ -28,9 +28,17 @@
 
 <xs:element name="deletarPlantaResponse" type="tns:deletarPlantaResponse"/>
 
+<xs:element name="editarInfoUsuario" type="tns:editarInfoUsuario"/>
+
+<xs:element name="editarInfoUsuarioResponse" type="tns:editarInfoUsuarioResponse"/>
+
 <xs:element name="editarPlanta" type="tns:editarPlanta"/>
 
 <xs:element name="editarPlantaResponse" type="tns:editarPlantaResponse"/>
+
+<xs:element name="editarSenhaUsuario" type="tns:editarSenhaUsuario"/>
+
+<xs:element name="editarSenhaUsuarioResponse" type="tns:editarSenhaUsuarioResponse"/>
 
 <xs:element name="editarTipoPlanta" type="tns:editarTipoPlanta"/>
 
@@ -55,6 +63,10 @@
 <xs:element name="todosTipoPlanta" type="tns:todosTipoPlanta"/>
 
 <xs:element name="todosTipoPlantaResponse" type="tns:todosTipoPlantaResponse"/>
+
+<xs:element name="todosUsuario" type="tns:todosUsuario"/>
+
+<xs:element name="todosUsuarioResponse" type="tns:todosUsuarioResponse"/>
 
 <xs:complexType name="editarTipoPlanta">
 <xs:sequence>
@@ -164,6 +176,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="editarSenhaUsuario">
+<xs:sequence>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarSenhaUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="login">
 <xs:sequence>
 <xs:element name="login" type="xs:string" minOccurs="0"/>
@@ -189,18 +213,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="todasLeituraPorPlanta">
-<xs:sequence>
-<xs:element name="idPlanta" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="todasLeituraPorPlantaResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:leitura" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="hello">
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
@@ -210,6 +222,18 @@
 <xs:complexType name="helloResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todasLeituraPorPlanta">
+<xs:sequence>
+<xs:element name="idPlanta" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todasLeituraPorPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:leitura" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -232,6 +256,16 @@
 <xs:complexType name="todosTipoPlantaResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:tipoPlanta" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="todosUsuario">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="todosUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -268,6 +302,18 @@
 <xs:complexType name="cadastrarUsuarioResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarInfoUsuario">
+<xs:sequence>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editarInfoUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

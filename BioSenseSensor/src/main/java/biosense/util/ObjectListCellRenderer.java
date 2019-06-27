@@ -17,17 +17,6 @@ import javax.swing.JList;
  */
 public class ObjectListCellRenderer extends DefaultListCellRenderer {
 
-    /**
-     * Lida com os casos em que o model de um JComboBox é um objeto,
-     * sobrescrevendo nesses casos o texto visualizado nos itens do combobox
-     *
-     * @param list
-     * @param value
-     * @param index
-     * @param isSelected
-     * @param cellHasFocus
-     * @return O componente com seu value formatado caso seja seja um objeto
-     */
     @Override
     public Component getListCellRendererComponent(
             JList list,

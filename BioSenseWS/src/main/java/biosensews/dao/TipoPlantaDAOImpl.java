@@ -20,12 +20,6 @@ import java.util.List;
  */
 public class TipoPlantaDAOImpl implements TipoPlantaDAO {
 
-    /**
-     * Cadastra um novo TipoPlanta
-     *
-     * @param tipoPlanta Tipo planta a ser cadastrado
-     * @return Id do TipoPlanta cadastrado
-     */
     @Override
     public int salvar(TipoPlanta tipoPlanta) {
         Connection con = FabricaConexao.getConexao();
@@ -56,11 +50,6 @@ public class TipoPlantaDAOImpl implements TipoPlantaDAO {
         return idTipoPlanta;
     }
 
-    /**
-     * Busca todos os TipoPlanta do banco
-     *
-     * @return Lista de TipoPlanta
-     */
     @Override
     public List<TipoPlanta> buscarTodos() {
         List<TipoPlanta> tiposPlanta = new ArrayList<>();
@@ -93,12 +82,6 @@ public class TipoPlantaDAOImpl implements TipoPlantaDAO {
         return tiposPlanta;
     }
 
-    /**
-     * Busca um determinado TipoPlanta
-     *
-     * @param id Id do TipoPlanta solicitada
-     * @return TipoPlanta solicitado
-     */
     @Override
     public TipoPlanta buscarPorId(int id) {
         TipoPlanta tipoPlanta = null;
@@ -130,12 +113,6 @@ public class TipoPlantaDAOImpl implements TipoPlantaDAO {
         return tipoPlanta;
     }
 
-    /**
-     * Edita um determinado TipoPlanta
-     *
-     * @param tipoPlanta TipoPlanta a ser editado
-     * @return true caso o TipoPlanta tenha sido editado com sucesso
-     */
     @Override
     public boolean editar(TipoPlanta tipoPlanta) {
         boolean b = false;

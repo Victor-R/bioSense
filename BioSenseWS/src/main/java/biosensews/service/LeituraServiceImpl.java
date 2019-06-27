@@ -22,23 +22,11 @@ public class LeituraServiceImpl implements LeituraService {
         this.leituraDAO = FabricaDAO.getLeituraDAO();
     }
 
-    /**
-     * Cadastra uma nova Leitura no banco de dados
-     *
-     * @param Leitura A ser gravada
-     * @return Id da Leitura inserida
-     */
     @Override
     public int cadastrar(Leitura Leitura) {
         return leituraDAO.salvar(Leitura);
     }
 
-    /**
-     * Busca todas as leituras de uma determinada planta
-     *
-     * @param idPlanta Id da planta a ser buscada
-     * @return Lista de leituras da planta
-     */
     @Override
     public List<Leitura> todosPorPlanta(int idPlanta) {
         return leituraDAO.buscarPorPlanta(idPlanta);

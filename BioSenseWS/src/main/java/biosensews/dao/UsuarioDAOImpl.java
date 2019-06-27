@@ -20,12 +20,6 @@ import java.util.List;
  */
 public class UsuarioDAOImpl implements UsuarioDAO {
 
-    /**
-     * Cadastra um novo Usuario no banco de dados
-     *
-     * @param usuario Usuario a ser cadastrado
-     * @return Id do Usuario cadastrado
-     */
     @Override
     public int salvar(Usuario usuario) {
         Connection con = FabricaConexao.getConexao();
@@ -55,11 +49,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return idUsuario;
     }
 
-    /**
-     * Busca todos os Usuarios
-     *
-     * @return Lista de todos os Usuarios
-     */
     @Override
     public List<Usuario> todos() {
         List<Usuario> usuarios = new ArrayList<>();
@@ -89,13 +78,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return usuarios;
     }
 
-    /**
-     * Busca determinado Usuario pelo login e senha
-     *
-     * @param login Login do Usuario
-     * @param senha Senha do Usuario
-     * @return Usuario solicitado
-     */
     @Override
     public Usuario buscarPorLoginSenha(String login, String senha) {
         Usuario usuario = null;
@@ -125,12 +107,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return usuario;
     }
 
-    /**
-     * Edita as informações pessoais do Usuario
-     *
-     * @param usuario Usuario a ser editado
-     * @return true caso tenha sido editado com sucesso
-     */
     @Override
     public boolean editarInfo(Usuario usuario) {
         boolean b = false;
@@ -156,12 +132,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return b;
     }
 
-    /**
-     * Edita a senha do Usuario solicitado
-     *
-     * @param usuario Usuario a ser alterado a senha
-     * @return true caso a senha tenha sido alterada com sucesso
-     */
     @Override
     public boolean editarSenha(Usuario usuario) {
         boolean b = false;

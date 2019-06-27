@@ -12,11 +12,6 @@ public class FabricaConexao implements IMySQL {
 
     }
 
-    /**
-     * Retorna uma conexão com o banco de dados
-     *
-     * @return Conexão configurada previamente
-     */
     public static Connection getConexao() {
         Connection con = null;
 

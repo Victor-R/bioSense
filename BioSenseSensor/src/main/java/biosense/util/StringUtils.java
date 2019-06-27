@@ -11,12 +11,6 @@ package biosense.util;
  */
 public class StringUtils {
 
-    /**
-     * Valida se uma String é nula ou vazia
-     *
-     * @param value String a ser verificada
-     * @return false se String tiver algum conteúdo
-     */
     public static boolean IsNullOrEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
