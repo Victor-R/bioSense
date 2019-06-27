@@ -30,6 +30,9 @@ public class ObjectListCellRenderer extends DefaultListCellRenderer {
         } else if (value instanceof TipoPlanta) {
             TipoPlanta planta = (TipoPlanta) value;
             value = planta.getNome();
+        } else if (value instanceof Planta) {
+            Planta planta = (Planta) value;
+            value = planta.getTipoPlanta().getNome() + " - " + DataUtils.GregorianCalendarToString(planta.getDataPlantio());
         }
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         return this;

@@ -175,7 +175,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos");
             }
             else {
-                JOptionPane.showMessageDialog(null, "Login realizado com sucesso");
+                //JOptionPane.showMessageDialog(null, "Login realizado com sucesso");
                 BioHome home = new BioHome();
                 home.setVisible(true);
                 this.dispose();

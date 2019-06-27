@@ -5,11 +5,20 @@
  */
 package biosense;
 
+import biosense.utils.ObjectListCellRenderer;
+import biosensews.ws.BioSenseWS;
+import biosensews.ws.BioSenseWS_Service;
+import biosensews.ws.Planta;
+import java.awt.event.ItemEvent;
+import java.util.List;
+
 /**
  *
  * @author Matheus Gaseta
  */
 public class BioHome extends javax.swing.JFrame {
+
+    Planta selectedPlanta;
 
     /**
      * Creates new form BioHome
@@ -17,6 +26,13 @@ public class BioHome extends javax.swing.JFrame {
     public BioHome() {
         initComponents();
         setLocationRelativeTo(null); // Centraliza Janela
+
+        BioSenseWS_Service service = new BioSenseWS_Service();
+        BioSenseWS port = service.getBioSenseWSPort();
+
+        List<Planta> plantas = port.todasPlantaPorUsuario(UserInfo.getUser().getId());
+        plantas.forEach(planta -> cmbPlantas.addItem(planta));
+        cmbPlantas.setRenderer(new ObjectListCellRenderer());
     }
 
     /**
@@ -34,7 +50,7 @@ public class BioHome extends javax.swing.JFrame {
         btnUsuario = new javax.swing.JButton();
         btnPlanta = new javax.swing.JButton();
         btnTipoPlanta = new javax.swing.JButton();
-        cmbPlantas = new javax.swing.JComboBox();
+        cmbPlantas = new javax.swing.JComboBox<>();
         btnMonitorar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
@@ -79,7 +95,11 @@ public class BioHome extends javax.swing.JFrame {
             }
         });
 
-        cmbPlantas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbPlantas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbPlantasItemStateChanged(evt);
+            }
+        });
 
         btnMonitorar.setBackground(new java.awt.Color(153, 255, 153));
         btnMonitorar.setText("Monitorar");
@@ -172,56 +192,82 @@ public class BioHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    /** Função de click no Botão Usuário
+    /**
+     * Função de click no Botão Usuário
+     *
      * @param Evt evento Java
      * @return void
      * @author Matheus Gaseta
-    */
+     */
     private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
         CadastroUsuario usuario = new CadastroUsuario();
         usuario.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnUsuarioActionPerformed
-    
-    /** Função de click no Botão Planta
+
+    /**
+     * Função de click no Botão Planta
+     *
      * @param Evt evento Java
      * @return void
      * @author Matheus Gaseta
-    */
+     */
     private void btnPlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlantaActionPerformed
         CadastroPlanta planta = new CadastroPlanta();
         planta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPlantaActionPerformed
 
-    /** Função de click no Botão TipoPlanta
+    /**
+     * Função de click no Botão TipoPlanta
+     *
      * @param Evt evento Java
      * @return void
      * @author Matheus Gaseta
-    */
+     */
     private void btnTipoPlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTipoPlantaActionPerformed
         CadastroTipoPlanta tipoPlanta = new CadastroTipoPlanta();
         tipoPlanta.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTipoPlantaActionPerformed
-    
-    /** Função de click no Botão Monitorar
+
+    /**
+     * Função de click no Botão Monitorar
+     *
      * @param Evt evento Java
      * @return void
      * @author Matheus Gaseta
-    */
+     */
     private void btnMonitorarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarActionPerformed
-        Graficos grafico = new Graficos();
+        Graficos grafico = new Graficos(this.selectedPlanta.getId());
+        grafico.monitoraGrafico();
     }//GEN-LAST:event_btnMonitorarActionPerformed
-    
-    /** Função de click no Botão Monitorar
+
+    /**
+     * Função de click no Botão Monitorar
+     *
      * @param Evt evento Java
      * @return void
      * @author Matheus Gaseta
-    */
+     */
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    /**
+     * Guarda a planta selecionada numa variável
+     * @param evt 
+     */
+    private void cmbPlantasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbPlantasItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Object item = evt.getItem();
+            if (item instanceof Planta) {
+                this.selectedPlanta = (Planta) item;
+            } else {
+                this.selectedPlanta = null;
+            }
+        }
+    }//GEN-LAST:event_cmbPlantasItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -266,7 +312,7 @@ public class BioHome extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnTipoPlanta;
     private javax.swing.JButton btnUsuario;
-    private javax.swing.JComboBox cmbPlantas;
+    private javax.swing.JComboBox<Planta> cmbPlantas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
