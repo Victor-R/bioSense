@@ -102,6 +102,11 @@ public class Sensores extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Calcula o sinal da taxa a ser incrementada na leitura
+     *
+     * @return -1 ou 1 dependendo do sinal
+     */
     private int calculaSinal() {
         String modo = btgModo.getSelection().getActionCommand();
         switch (modo) {
@@ -398,8 +403,12 @@ public class Sensores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Busca as plantas do usuário selecionado
+     *
+     * @param evt
+     */
     private void cbUsuariosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbUsuariosItemStateChanged
-        // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             Object item = evt.getItem();
             if (item instanceof Usuario) {
@@ -412,6 +421,11 @@ public class Sensores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbUsuariosItemStateChanged
 
+    /**
+     * Valida se todos os campos foram inseridos corretamente no form
+     *
+     * @return false caso algum campo esteja inválido
+     */
     private boolean validaCampos() {
         if (this.selectedUsuario == null) {
             JOptionPane.showMessageDialog(null, "Selecione um Usuário");
@@ -439,8 +453,12 @@ public class Sensores extends javax.swing.JFrame {
         return true;
     }
 
+    /**
+     * Inicia ou pausa a simulação
+     *
+     * @param evt
+     */
     private void btSimulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSimulacaoActionPerformed
-        // TODO add your handling code here:
         if (!simulacao) {
             if (validaCampos()) {
                 simulacao = true;
@@ -457,6 +475,11 @@ public class Sensores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btSimulacaoActionPerformed
 
+    /**
+     * Altera os componentes que podem ser editados
+     *
+     * @param enabled false se for desativar os componentes
+     */
     private void alterarComponentesAtivos(boolean enabled) {
         cbPlantas.setEnabled(enabled);
         cbUsuarios.setEnabled(enabled);
@@ -465,20 +488,14 @@ public class Sensores extends javax.swing.JFrame {
         txtTaxaSolo.setEnabled(enabled);
         txtTaxaTemp.setEnabled(enabled);
         txtTaxaUmidade.setEnabled(enabled);
-        /*
-        txtIrrigacao.setEnabled(enabled);
-        txtPh.setEnabled(enabled);
-        txtSolo.setEnabled(enabled);
-        txtTemp.setEnabled(enabled);
-        txtUmidade.setEnabled(enabled);
-        rbModoAuto.setEnabled(enabled);
-        rbModoCresc.setEnabled(enabled);
-        rbModoDec.setEnabled(enabled);
-         */
     }
 
+    /**
+     * Grava em uma variável a planta selecionada
+     *
+     * @param evt
+     */
     private void cbPlantasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbPlantasItemStateChanged
-        // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             Object item = evt.getItem();
             if (item instanceof Planta) {

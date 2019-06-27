@@ -22,21 +22,44 @@ public class TipoPlantaServiceImpl implements TipoPlantaService {
         this.tipoPlantaDAO = FabricaDAO.getTipoPlantaDAO();
     }
 
+    /**
+     * Cadastra um novo TipoPlanta
+     *
+     * @param tipoPlanta Tipo planta a ser cadastrado
+     * @return Id do TipoPlanta cadastrado
+     */
     @Override
     public int cadastrar(TipoPlanta tipoPlanta) {
         return tipoPlantaDAO.salvar(tipoPlanta);
     }
 
+    /**
+     * Busca um determinado TipoPlanta
+     *
+     * @param id Id do TipoPlanta solicitada
+     * @return TipoPlanta solicitado
+     */
     @Override
     public TipoPlanta buscar(int id) {
         return tipoPlantaDAO.buscarPorId(id);
     }
 
+    /**
+     * Busca todos os TipoPlanta do banco
+     *
+     * @return Lista de TipoPlanta
+     */
     @Override
     public List<TipoPlanta> todos() {
         return tipoPlantaDAO.buscarTodos();
     }
 
+    /**
+     * Edita um determinado TipoPlanta
+     *
+     * @param tipoPlanta TipoPlanta a ser editado
+     * @return true caso o TipoPlanta tenha sido editado com sucesso
+     */
     @Override
     public boolean editar(TipoPlanta tipoPlanta) {
         return tipoPlantaDAO.editar(tipoPlanta);

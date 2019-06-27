@@ -8,7 +8,6 @@ package biosensews.dao;
 import biosensews.model.Leitura;
 import biosensews.utils.FabricaConexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +21,12 @@ import java.util.List;
  */
 public class LeituraDAOImpl implements LeituraDAO {
 
+    /**
+     * Cadastra uma nova Leitura no banco de dados
+     *
+     * @param leitura A ser gravada
+     * @return Id da Leitura inserida
+     */
     @Override
     public int salvar(Leitura leitura) {
         Connection con = FabricaConexao.getConexao();
@@ -52,6 +57,12 @@ public class LeituraDAOImpl implements LeituraDAO {
         return idLeitura;
     }
 
+    /**
+     * Busca todas as leituras de uma determinada planta
+     *
+     * @param idPlanta Id da planta a ser buscada
+     * @return Lista de leituras da planta
+     */
     @Override
     public List<Leitura> buscarPorPlanta(int idPlanta) {
         List<Leitura> leituras = new ArrayList<>();

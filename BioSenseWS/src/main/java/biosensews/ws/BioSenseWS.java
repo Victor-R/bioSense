@@ -38,10 +38,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Cadastra um novo usuario
      *
      * @param usuario
-     * @return
+     * @return Id do usuario cadastrado
      */
     @WebMethod(operationName = "cadastrarUsuario")
     public int cadastrarUsuario(@WebParam(name = "usuario") Usuario usuario) {
@@ -50,11 +50,11 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Busca usuario pelo login e senha
      *
      * @param login
      * @param senha
-     * @return
+     * @return Usuario solicitado
      */
     @WebMethod(operationName = "login")
     public Usuario login(@WebParam(name = "login") String login, @WebParam(name = "senha") String senha) {
@@ -63,10 +63,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Cadastra um novo tipo planta
      *
      * @param tipoPlanta
-     * @return
+     * @return Id do tipo planta cadastrado
      */
     @WebMethod(operationName = "cadastrarTipoPlanta")
     public int cadastrarTipoPlanta(@WebParam(name = "tipoPlanta") TipoPlanta tipoPlanta) {
@@ -75,10 +75,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Busca determinado tipo planta
      *
      * @param idTipoPlanta
-     * @return
+     * @return Tipo planta solicitado
      */
     @WebMethod(operationName = "buscarTipoPlanta")
     public TipoPlanta buscarTipoPlanta(@WebParam(name = "idTipoPlanta") int idTipoPlanta) {
@@ -87,9 +87,9 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Busca todos os tipo planta
      *
-     * @return
+     * @return Lista de tipo planta
      */
     @WebMethod(operationName = "todosTipoPlanta")
     public List<TipoPlanta> todosTipoPlanta() {
@@ -98,10 +98,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Edita determinado TipoPlanta
      *
      * @param tipoPlanta
-     * @return
+     * @return true caso tenha editado com sucesso
      */
     @WebMethod(operationName = "editarTipoPlanta")
     public boolean editarTipoPlanta(@WebParam(name = "tipoPlanta") TipoPlanta tipoPlanta) {
@@ -110,10 +110,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Cadastra uma nova planta
      *
      * @param planta
-     * @return
+     * @return Planta solicitada
      */
     @WebMethod(operationName = "cadastrarPlanta")
     public int cadastrarPlanta(@WebParam(name = "planta") Planta planta) {
@@ -122,10 +122,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Busca determinada planta
      *
      * @param idPlanta
-     * @return
+     * @return Planta solicitada
      */
     @WebMethod(operationName = "buscarPlantaPorId")
     public Planta buscarPlantaPorId(@WebParam(name = "idPlanta") int idPlanta) {
@@ -134,10 +134,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Busca todas as plantas do usuario solicitado
      *
      * @param idUsuario
-     * @return
+     * @return Lista de plantas
      */
     @WebMethod(operationName = "todasPlantaPorUsuario")
     public List<Planta> todasPlantaPorUsuario(@WebParam(name = "idUsuario") int idUsuario) {
@@ -146,10 +146,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Edita uma determinada planta
      *
      * @param planta
-     * @return
+     * @return true caso tenha editado com sucesso
      */
     @WebMethod(operationName = "editarPlanta")
     public boolean editarPlanta(@WebParam(name = "planta") Planta planta) {
@@ -158,10 +158,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Deleta uma determinada planta
      *
      * @param idPlanta
-     * @return
+     * @return true caso tenha deletado com sucesso
      */
     @WebMethod(operationName = "deletarPlanta")
     public boolean deletarPlanta(@WebParam(name = "idPlanta") int idPlanta) {
@@ -170,10 +170,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Cadastra uma nova leitura
      *
      * @param leitura
-     * @return
+     * @return Id da leitura cadastrada
      */
     @WebMethod(operationName = "cadastrarLeitura")
     public int cadastrarLeitura(@WebParam(name = "leitura") Leitura leitura) {
@@ -182,10 +182,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Busca todas as leituras da planta solicitada
      *
      * @param idPlanta
-     * @return
+     * @return Lista de leituras
      */
     @WebMethod(operationName = "todasLeituraPorPlanta")
     public List<Leitura> todasLeituraPorPlanta(@WebParam(name = "idPlanta") int idPlanta) {
@@ -194,9 +194,9 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Busca todos os usuarios cadastrados
      *
-     * @return
+     * @return Lista de usuarios
      */
     @WebMethod(operationName = "todosUsuario")
     public List<Usuario> todosUsuario() {
@@ -205,9 +205,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Edita as informações pessoais do usuario
+     *
      * @param usuario
-     * @return 
+     * @return true caso tenha editado com sucesso
      */
     @WebMethod(operationName = "editarInfoUsuario")
     public boolean editarInfoUsuario(@WebParam(name = "usuario") Usuario usuario) {
@@ -216,9 +217,10 @@ public class BioSenseWS {
     }
 
     /**
-     * Operação de Web service
+     * Edita a senha do usuario solicitado
+     *
      * @param usuario
-     * @return 
+     * @return true caso tenha editado com sucesso
      */
     @WebMethod(operationName = "editarSenhaUsuario")
     public boolean editarSenhaUsuario(@WebParam(name = "usuario") Usuario usuario) {
