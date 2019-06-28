@@ -11,6 +11,8 @@ import biosensews.ws.BioSenseWS_Service;
 import biosensews.ws.Planta;
 import java.awt.event.ItemEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -239,8 +241,11 @@ public class BioHome extends javax.swing.JFrame {
      * @author Matheus Gaseta
      */
     private void btnMonitorarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarActionPerformed
-        Graficos grafico = new Graficos(this.selectedPlanta.getId());
-        grafico.monitoraGrafico();
+        try {
+            Graficos graficos = new Graficos(this.selectedPlanta.getId());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }//GEN-LAST:event_btnMonitorarActionPerformed
 
     /**

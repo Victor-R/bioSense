@@ -406,6 +406,7 @@ public class Sensores extends javax.swing.JFrame {
             if (item instanceof Usuario) {
                 this.selectedUsuario = (Usuario) item;
                 List<Planta> plantas = port.todasPlantaPorUsuario(this.selectedUsuario.getId());
+                cbPlantas.removeAllItems();
                 plantas.forEach(planta -> cbPlantas.addItem(planta));
             } else {
                 this.selectedUsuario = null;
